@@ -1,7 +1,9 @@
 ---
-##
-# Default Password was set to -> CraPass4Acc@
-#
+ntp_config_servers:
+  - 2.sk.pool.ntp.org
+  - 1.sk.pool.ntp.org
+  - 0.europe.pool.ntp.org
+  - 2.europe.pool.ntp.org
 
 timezone: Europe/Prague
 set_timezone: true

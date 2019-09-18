@@ -1,6 +1,6 @@
 ---
 
-- name: Restart rsyslog
+- name: Restart timesyncd
   service:
-    name: rsyslog
+    name: systemd-timesyncd
     state: restarted

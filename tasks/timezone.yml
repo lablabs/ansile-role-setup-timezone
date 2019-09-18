@@ -9,7 +9,7 @@
   when:
     - not ansible_check_mode
     - current_zone.stdout != timezone
-  notify: Restart rsyslog
+  notify: Restart timesyncd
 
 - name: Set timesyncd NTP servers
   ini_file:
