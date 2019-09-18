@@ -1,0 +1,20 @@
+---
+- name: check current timezone
+  command: cat /etc/timezone
+  register: current_zone
+  changed_when: false
+
+- name: Set correct timezone
+  command: "/usr/bin/timedatectl set-timezone {{ timezone }}"
+  when:
+    - not ansible_check_mode
+    - current_zone.stdout != timezone
+  notify: Restart rsyslog
+
+- name: Set timesyncd NTP servers
+  ini_file:
+    path: /etc/systemd/timesyncd.conf
+    section: Time
+    option: NTP
+    value: "{{ ntp_config_servers | join(' ') }}"
+  notify: Restart timesyncd
